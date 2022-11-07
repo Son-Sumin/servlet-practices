@@ -32,7 +32,6 @@
 		<br/><br/>
 		
 		
-		
 		<input type="submit" value="회원가입" />
 	</form>
 </body>
