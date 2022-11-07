@@ -23,7 +23,7 @@ public class GuestbookDao01 {
 			
 			stmt = conn.createStatement();
 			
-			String sql = " insert into guestbook values(index++, ?, ?, ?, ?)";
+			String sql = " insert into guestbook values(?, ?, ?, ?, ?)";
 			int count = stmt.executeUpdate(sql);
 			
 			result = count == 1;
