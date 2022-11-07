@@ -26,14 +26,14 @@
 	<h4><%=birthYear %></h4>
 	<h4><%=gender %></h4>
 	<p><%=profile %></p>
-	
+
 	<%
-	for(String hobby:hobbies) {
+		for(String hobby:hobbies) {
 	%>
 		<h4><%=hobby %></h4>
 	<%
-	}
+		}
 	%>
-	
+
 </body>
 </html>
