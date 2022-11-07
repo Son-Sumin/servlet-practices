@@ -48,7 +48,10 @@
 		</p>
 		
 		<!-- a: inline element -->
-		<a href="/helloweb/hello.jsp?name=손수민">hello로 가기</a>   <!-- GET방법/ 4바이트까지 -->
+		<a href="/helloweb/hello.jsp?name=손수민">hello로 가기1</a>   <!-- GET방법/ 4바이트까지 -->
+		<br/>
+		<a href="/helloweb/hello?name=손수민">hello로 가기2</a>  
+		
 		<br/>  
 		<a href="form.jsp">폼으로 가기</a>
 	
