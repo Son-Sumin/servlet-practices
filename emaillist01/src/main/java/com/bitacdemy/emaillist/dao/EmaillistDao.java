@@ -10,8 +10,6 @@ import java.util.List;
 
 import com.bitacdemy.emaillist.vo.EmaillistVo;
 
-// DAO-CRUD / IO-데이터베이스 row를 담는 객체 -> single responsibility
-
 public class EmaillistDao {
 
 	public Boolean insert(EmaillistVo vo) {
@@ -112,7 +110,6 @@ public class EmaillistDao {
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패: " + e);
 		}
-
 		return conn;
 	}
 }
