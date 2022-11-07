@@ -1,3 +1,5 @@
+<%@page import="com.bitacdemy.emaillist.vo.EmaillistVo"%>
+<%@page import="com.bitacdemy.emaillist.dao.EmaillistDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,8 +10,8 @@
 	String email = request.getParameter("email");
 	
 	EmaillistVo vo = new EmaillistVo();
-	vo.setFristName(firstName);
-	vo.setFristName(lastName);
+	vo.setFirstName(firstName);
+	vo.setLastName(lastName);
 	vo.setEmail(email);
 	
 	new EmaillistDao().insert(vo);

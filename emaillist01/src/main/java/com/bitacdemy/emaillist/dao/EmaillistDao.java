@@ -63,7 +63,7 @@ public class EmaillistDao {
 			stmt = conn.createStatement();
 
 			String sql = 
-					"select first_name, last_name, email" + 
+					" select first_name, last_name, email" + 
 					" from emaillist order by no desc";
 			rs = stmt.executeQuery(sql);
 
@@ -114,6 +114,5 @@ public class EmaillistDao {
 		}
 
 		return conn;
-
 	}
 }
