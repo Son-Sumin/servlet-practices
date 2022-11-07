@@ -26,9 +26,9 @@
 		남자<input type="radio" name="gender" value="male" />
 		<br/><br/>
 		
-		자기소개:    <!-- textarea는 다물어 놓기-->
-		<textarea></textarea> name="";
-		
+		자기소개:    
+		<br/><br/>
+		<textarea name="profile"></textarea>   <!-- textarea는 다물어 놓기-->
 		<br/><br/>
 		
 		
