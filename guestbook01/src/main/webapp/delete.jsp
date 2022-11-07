@@ -8,9 +8,9 @@
 	String index = request.getParameter("no");
 	String password = request.getParameter("password");
 	
-	
-	
 	GuestbookVo01 vo = new GuestbookVo01();
+	
+	
 	vo.setFirstName(firstName);
 	vo.setLastName(lastName);
 	vo.setEmail(email);
