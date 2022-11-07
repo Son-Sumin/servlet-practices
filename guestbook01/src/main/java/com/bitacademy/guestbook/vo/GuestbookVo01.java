@@ -1,18 +1,17 @@
 package com.bitacademy.guestbook.vo;
 
-public class GuestbookVo {
-	private int index;
+public class GuestbookVo01 {
+	private int no;
 	private String name;
 	private String password;
 	private String contents;
 	private String reg_date;
 	
-	public int getIndex() {
-		return index;
+	public int getNo() {
+		return no;
 	}
-	public void setIndex(int index) {
-		this.index = index;
-		index++;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public String getName() {
 		return name;

@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bitacademy.guestbook.vo.GuestbookVo;
+import com.bitacademy.guestbook.vo.GuestbookVo01;
 
-public class GuestbookDao {
+public class GuestbookDao01 {
 
-	public Boolean insert(GuestbookVo vo) {
+	public Boolean insert(GuestbookVo01 vo) {
 		boolean result = false;
 		
 		Connection conn = null;
@@ -46,8 +46,8 @@ public class GuestbookDao {
 	}
 
 	
-	public List<GuestbookVo> findAll() {
-		List<GuestbookVo> result = new ArrayList<>();
+	public List<GuestbookVo01> findAll() {
+		List<GuestbookVo01> result = new ArrayList<>();
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -62,13 +62,13 @@ public class GuestbookDao {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				int index = rs.getInt(1);
+				int no = rs.getInt(1);
 				String name = rs.getString(2);
 				String contents = rs.getString(3);
 				String reg_date = rs.getString(4);
 
-				GuestbookVo vo = new GuestbookVo();
-				vo.setIndex(index);
+				GuestbookVo01 vo = new GuestbookVo01();
+				vo.setNo(no);
 				vo.setName(name);
 				vo.setContents(contents);
 				vo.setReg_date(reg_date);
@@ -83,6 +83,38 @@ public class GuestbookDao {
 				if (rs != null) {
 					rs.close();
 				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public Boolean deleteByPw(String password) {
+		boolean result = false;
+		
+		Connection conn = null;  
+		Statement stmt = null;
+		
+		try {
+			conn = getConnection();
+			
+			stmt = conn.createStatement();
+
+			String sql = "delete from guestbook where no= ? and  password= ?";
+			int count = stmt.executeUpdate(sql);
+
+			result = count == 1;
+			
+		} catch (SQLException e) {
+			System.out.println("Error: " + e);
+		} finally {
+			try {
 				if (stmt != null) {
 					stmt.close();
 				}
