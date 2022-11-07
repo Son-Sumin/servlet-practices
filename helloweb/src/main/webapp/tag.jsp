@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +35,9 @@
 	</table>
 	
 		<!-- img: inline element -->
-		<br/>  
+		<br/>     <!-- br: inline contents 끊고 다음 라인 실행-->
 		<img src="http://localhost:8080/helloweb/images/맹구2.jpg" style="width:100px"/>
-		<br/>     <!-- inline contents 끊고 다음 라인 실행-->
+		<br/>    
 		<img src="/helloweb/images/맹구2.jpg" style="width:100px"/>    <!-- /; 시작하면 절대 경로, 같은 호스트면 가능  -->
 		<br/>  
 		<img src="images/맹구2.jpg" style="width:100px"/>    <!-- ./ 상대 경로, 생략 가능  -->
@@ -48,7 +48,8 @@
 		</p>
 		
 		<!-- a: inline element -->
-		<a href="/helloweb/hello.jsp">hello로 가기</a>
+		<a href="/helloweb/hello.jsp?name=손수민">hello로 가기</a>   <!-- GET방법/ 4바이트까지 -->
+		<br/>  
 		<a href="form.jsp">폼으로 가기</a>
 	
 </body>

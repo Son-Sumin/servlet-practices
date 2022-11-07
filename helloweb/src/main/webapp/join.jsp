@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- scriptlet 스트링으로 넘어가니 int는 casting 필요 -->
+<%
+	String email = request.getParameter("email"); 
+	String password = request.getParameter("password");
+	String birthYear = request.getParameter("birthYear");
+	String gender = request.getParameter("gender");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4><%=email %></h4>
+	<h4><%=password %></h4>
+	<h4><%=birthYear %></h4>
+	<h4><%=gender %></h4>
+</body>
+</html>
