@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
-	String no = request.getParameter(name);
+	String no = request.getParameter("no");
 %>
 
 <html>
@@ -16,7 +16,6 @@
 			<td>비밀번호</td>
 			<td><input type="password" name="password"></td>
 			<td><input type="submit" value="확인"></td>
-			<td></td>
 		</tr>
 	</table>
 	<br><br>
