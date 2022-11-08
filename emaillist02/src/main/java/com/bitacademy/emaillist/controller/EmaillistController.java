@@ -19,8 +19,8 @@ public class EmaillistController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String action = request.getParameter("a");
-		if("list".equals(action)) {
-		} else if("form".equals(action)) {
+		
+		if("form".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/form.jsp");
 			rd.forward(request, response);
 		} else if("add".equals(action)) {
@@ -37,7 +37,7 @@ public class EmaillistController extends HttpServlet {
 			
 			new EmaillistDao().insert(vo);
 			
-			response.sendRedirect("<%=request.getContextPath() %>");
+			response.sendRedirect(request.getContextPath() + "/el");
 		} else {  // default 요청 처리
 			List<EmaillistVo> list = new EmaillistDao().findAll();
 			
