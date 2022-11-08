@@ -1,16 +1,16 @@
 package com.bitacademy.guestbook.vo;
 
-public class GuestbookVo01 {
-	private int no;
+public class GuestbookVo {
+	private Long no;
 	private String name;
 	private String password;
 	private String contents;
-	private String reg_date;
+	private String regDate;
 	
-	public int getNo() {
+	public Long getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(Long no) {
 		this.no = no;
 	}
 	public String getName() {
@@ -31,10 +31,16 @@ public class GuestbookVo01 {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getReg_date() {
-		return reg_date;
+	public String getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
+	@Override
+	public String toString() {
+		return "GuestbookVo [no=" + no + ", name=" + name + ", password=" + password + ", contents=" + contents
+				+ ", regDate=" + regDate + "]";
+	}
+	
 }

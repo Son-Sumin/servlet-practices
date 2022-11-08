@@ -1,5 +1,5 @@
-<%@page import="com.bitacademy.guestbook.dao.test.GuestbookDao01"%>
-<%@page import="com.bitacademy.guestbook.vo.GuestbookVo01"%>
+<%@page import="com.bitacademy.guestbook.dao.GuestbookDao"%>
+<%@page import="com.bitacademy.guestbook.vo.GuestbookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
@@ -9,9 +9,8 @@
 	String password = request.getParameter("password");
 
 	
-	new GuestbookDao01().deleteByPw(password);
+	new GuestbookDao().deleteByPw(password);
 	
 	response.sendRedirect("/guestbook01");
-	
 %>
 

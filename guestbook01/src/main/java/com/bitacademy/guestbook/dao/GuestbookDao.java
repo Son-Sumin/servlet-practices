@@ -1,30 +1,33 @@
-package com.bitacademy.guestbook.dao.test;
+package com.bitacademy.guestbook.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bitacademy.guestbook.vo.GuestbookVo01;
+import com.bitacademy.guestbook.vo.GuestbookVo;
 
-public class GuestbookDao01 {
+public class GuestbookDao {
 
-	public Boolean insert(GuestbookVo01 vo) {
+	public Boolean insert(GuestbookVo vo) {
 		boolean result = false;
 		
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		try {
 			conn = getConnection();
 			
-			stmt = conn.createStatement();
+			String sql = " insert into guestbook values(null, ?, ?, ?, now())";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getContents());
 			
-			String sql = " insert into guestbook values(?, ?, ?, ?, ?)";
-			int count = stmt.executeUpdate(sql);
+			int count = pstmt.executeUpdate();
 			
 			result = count == 1;
 			
@@ -32,8 +35,8 @@ public class GuestbookDao01 {
 			System.out.println("Error:" + e);
 		} finally {
 			try {
-				if(stmt != null) {
-					stmt.close();
+				if(pstmt != null) {
+					pstmt.close();
 				}
 				if(conn != null) {
 					conn.close();
@@ -46,32 +49,31 @@ public class GuestbookDao01 {
 	}
 
 	
-	public List<GuestbookVo01> findAll() {
-		List<GuestbookVo01> result = new ArrayList<>();
+	public List<GuestbookVo> findAll() {
+		List<GuestbookVo> result = new ArrayList<>();
 
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 			conn = getConnection();
-					
-			stmt = conn.createStatement();
 
-			String sql = " select ?, ?, ?, ?, date_format(reg_date, '%Y/%m/%d') from guestbook;";
-			rs = stmt.executeQuery(sql);
+			String sql = " select no, name, contents, date_format(reg_date, '%Y/%m/%d') from guestbook order by reg_date desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
 
 			while (rs.next()) {
-				int no = rs.getInt(1);
+				Long no = rs.getLong(1);
 				String name = rs.getString(2);
 				String contents = rs.getString(3);
-				String reg_date = rs.getString(4);
+				String regDate = rs.getString(4);
 
-				GuestbookVo01 vo = new GuestbookVo01();
+				GuestbookVo vo = new GuestbookVo();
 				vo.setNo(no);
 				vo.setName(name);
 				vo.setContents(contents);
-				vo.setReg_date(reg_date);
+				vo.setRegDate(regDate);
 
 				result.add(vo);
 			}
@@ -83,8 +85,8 @@ public class GuestbookDao01 {
 				if (rs != null) {
 					rs.close();
 				}
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (conn != null)
 					conn.close();
@@ -99,15 +101,14 @@ public class GuestbookDao01 {
 		boolean result = false;
 		
 		Connection conn = null;  
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		try {
 			conn = getConnection();
 			
-			stmt = conn.createStatement();
-
 			String sql = "delete from guestbook where no= ? and  password= ?";
-			int count = stmt.executeUpdate(sql);
+			pstmt = conn.prepareStatement(sql);
+			int count = pstmt.executeUpdate();
 
 			result = count == 1;
 			
@@ -115,8 +116,8 @@ public class GuestbookDao01 {
 			System.out.println("Error: " + e);
 		} finally {
 			try {
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (conn != null)
 					conn.close();
