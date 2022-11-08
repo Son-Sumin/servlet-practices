@@ -9,6 +9,9 @@ public class EmaillistVo {
 	public Long getNo() {
 		return no;
 	}
+	public void setNo(Long no) {
+		this.no = no;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -26,9 +29,6 @@ public class EmaillistVo {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public void setNo(Long no) {
-		this.no = no;
 	}
 	@Override
 	public String toString() {

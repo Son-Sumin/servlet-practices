@@ -2,8 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
-	//List<GuestbookVo> no = (List<GuestbookVo>)request.getAttribute("list");
-	// String no = (String)request.getAttribute("list");
 	String no = request.getParameter("no");
 %>
 

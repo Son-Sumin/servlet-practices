@@ -23,9 +23,8 @@ public class EmaillistController extends HttpServlet {
 		if("form".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/form.jsp");
 			rd.forward(request, response);
+			
 		} else if("add".equals(action)) {
-			// response.getWriter().println("add!!!!");
-
 			String firstName = request.getParameter("fn");
 			String lastName = request.getParameter("ln");
 			String email = request.getParameter("email");
@@ -38,13 +37,13 @@ public class EmaillistController extends HttpServlet {
 			new EmaillistDao().insert(vo);
 			
 			response.sendRedirect(request.getContextPath() + "/el");
+			
 		} else {  // default 요청 처리
 			List<EmaillistVo> list = new EmaillistDao().findAll();
 			
 			request.setAttribute("list", list);  //("앞으로 쓸 객체 이름", "")
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/index.jsp");
 			rd.forward(request, response);  // 이제부터 코드는 jsp에서 실행된다
-			
 		}
 	}
 

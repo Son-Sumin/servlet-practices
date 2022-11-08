@@ -21,7 +21,7 @@ public class GuestbookController extends HttpServlet {
 		
 		String action = request.getParameter("a");
 		
-		if("deleteform".equals(action)) {
+		if("deleteform".equals(action)) {			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/deleteform.jsp");
 			rd.forward(request, response);
 			
