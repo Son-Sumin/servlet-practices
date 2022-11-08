@@ -1,6 +1,9 @@
+<%@page import="com.bitacademy.guestbook.vo.GuestbookVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
-	String no = request.getParameter("no");
+	//List<GuestbookVo> no = (List<GuestbookVo>)request.getAttribute("list");
+	String no = (String)request.getAttribute("list");
 %>
 
 <html>
@@ -9,7 +12,7 @@
 <title>방명록</title>
 </head>
 <body>
-	<form method="post" action="delete.jsp">
+	<form method="post" action="<%=request.getContextPath() %>/gb?a=delete">
 	<input type='hidden' name="no" value="<%=no %>">
 	<table>
 		<tr>
@@ -19,7 +22,7 @@
 		</tr>
 	</table>
 	<br><br>
-	<a href="/guestbook01">메인으로 돌아가기</a>
+	<a href="<%=request.getContextPath() %>/gb">메인으로 돌아가기</a>
 	</form>
 </body>
 </html>

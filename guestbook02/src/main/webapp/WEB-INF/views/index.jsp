@@ -3,7 +3,7 @@
 <%@page import="com.bitacademy.guestbook.dao.GuestbookDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	List<GuestbookVo> list = new GuestbookDao().findAll();
+	List<GuestbookVo> list = (List<GuestbookVo>)request.getAttribute("list");
 %>
 
 <html>
@@ -12,7 +12,7 @@
 <title>방명록</title>
 </head>
 <body>
-	<form action="add.jsp" method="post">
+	<form action="<%=request.getContextPath() %>/gb?a=add" method="post">
 	<table border=1 width=500>
 		<tr>
 			<td>이름</td><td><input type="text" name="name"></td>
@@ -36,7 +36,7 @@
 			<td>[<%=count-- %>]</td>
 			<td><%=vo.getName() %></td>
 			<td><%=vo.getRegDate() %></td>
-			<td><a href="deleteform.jsp?no=<%=vo.getNo() %>">삭제</a></td>
+			<td><a href="/WEB-INF/views/deleteform.jsp?no=<%=vo.getNo() %>">삭제</a></td>
 		</tr>
 		<tr>
 			<td colspan=4>
