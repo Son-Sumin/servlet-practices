@@ -37,7 +37,6 @@ public class GuestbookController extends HttpServlet {
 			
 			new GuestbookDao().insert(vo);
 			
-			//response.sendRedirect("/gb");
 			response.sendRedirect(request.getContextPath() + "/gb");
 			
 		} else if("delete".equals(action)) {
