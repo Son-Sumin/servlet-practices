@@ -1,6 +1,7 @@
 package com.bitacademy.helloweb.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -25,10 +26,18 @@ public class CookieServlet extends HttpServlet {
 				}
 			}
 		}
-		
 		visitCount++;
-		// 쿠키 쓰기
 		
+		// 쿠키 쓰기 (in header)
+		Cookie cookie = new Cookie(COOKIE_NAME, String.valueOf(visitCount));
+		cookie.setPath(request.getContextPath());
+		cookie.setMaxAge(1 * 24 * 60 * 60);  //1day
+		response.addCookie(cookie);
+		
+		//html 응답(body)
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		pw.println("<h1>방문 횟수:" + visitCount + "</h1>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
