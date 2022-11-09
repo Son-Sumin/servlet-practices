@@ -31,7 +31,7 @@ public class CookieServlet extends HttpServlet {
 		// 쿠키 쓰기 (in header)
 		Cookie cookie = new Cookie(COOKIE_NAME, String.valueOf(visitCount));
 		cookie.setPath(request.getContextPath());
-		cookie.setMaxAge(1 * 24 * 60 * 60);  //1day
+		cookie.setMaxAge(1 * 24 * 60 * 60);  //1day  // -1이면 메모리에 저장
 		response.addCookie(cookie);
 		
 		//html 응답(body)
