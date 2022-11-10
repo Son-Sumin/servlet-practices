@@ -5,6 +5,7 @@
 <%
 	String color = request.getParameter("c");
 %>
+<!-- localhost:8080/jstlel/color01.jsp?c=red -->
 <!DOCTYPE html>
 <html>
 <head>

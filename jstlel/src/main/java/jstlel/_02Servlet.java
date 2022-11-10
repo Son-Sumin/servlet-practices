@@ -22,6 +22,8 @@ public class _02Servlet extends HttpServlet {
 	 * 주의: 같은 이름으로 여러 범위에 객체를 저장하는 경우 주의가 필요하다.
 	 */ 
 		
+		//localhost:8080/jstlel/02
+		
 		// request scope
 		UserVo vo1 = new UserVo();
 		vo1.setNo(1L);
@@ -34,7 +36,8 @@ public class _02Servlet extends HttpServlet {
 		vo2.setName("둘리2");
 		request.getSession().setAttribute("vo", vo2);
 		
-		request.getRequestDispatcher("/WEB-INF/views/02.jsp")
+		request
+		.getRequestDispatcher("/WEB-INF/views/02.jsp")
 		.forward(request, response);
 	}
 

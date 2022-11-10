@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class _01Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//localhost:8080/jstlel/01
+		
 		// 값
 		int iVal = 10;
 		long lVal = 10;

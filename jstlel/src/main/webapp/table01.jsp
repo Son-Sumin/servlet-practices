@@ -9,6 +9,7 @@
 	int nCol = Integer.parseInt(col);
 	int nRow = Integer.parseInt(row);
 %>
+<!-- localhost:8080/jstlel/table01.jsp?c=5&r=2 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 		%>
 		<tr>
 			<%
-				for(int j = 0; j < nRow; j++) {
+				for(int j = 0; j < nCol; j++) {
 			%>
 			<td>cell(<%=j %>, <%=i %>)</td>
 			<%

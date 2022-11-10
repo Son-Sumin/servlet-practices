@@ -10,8 +10,8 @@
 </head>
 <body>
 	<c:set var='count' value='${fn:length(list) }' />
+	${count }<br/>
 	
-	${count }
 	<c:forEach items='${list }' var='vo' varStatus='status'>
 		[${count-status.index }] [${status.index } : ${status.count}] [${vo.no } : ${vo.name } : ${vo.email }]<br/>
 	</c:forEach>

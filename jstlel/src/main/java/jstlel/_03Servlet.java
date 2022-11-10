@@ -13,6 +13,8 @@ public class _03Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//localhost:8080/jstlel/03
+		
 		List<UserVo> list = new ArrayList<>();
 		
 		UserVo vo1 = new UserVo();
