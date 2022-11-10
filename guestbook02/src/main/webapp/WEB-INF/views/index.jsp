@@ -5,6 +5,11 @@
 <%
 	List<GuestbookVo> list = (List<GuestbookVo>)request.getAttribute("list");
 %>
+<!--
+<%
+	pageContext.setAttribute("newline", "\n");
+%>
+-->
 
 <html>
 <head>
@@ -38,11 +43,16 @@
 			<td><%=vo.getRegDate() %></td>
 			<td><a href="./gb?a=deleteform&no=<%=vo.getNo() %>">삭제</a></td>
 		</tr>
+		<!--<c:set var="newline" value="\n" />-->
+		
 		<tr>
 			<td colspan=4>
 				<%=vo.getContents().replaceAll("\n", "<br>") %>
 			</td>
+				
+			<!--<td colspan=4>${fn:replace(vo.contents, 'newline', '<br/>') }</td>-->
 		</tr>
+		
 	</table>
 	<br>
 	<%
