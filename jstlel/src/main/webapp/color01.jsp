@@ -19,11 +19,11 @@
 	<%
 		} else if("blue".equals(color)) {
 	%>	
-		<h1 style="color:#00ff00">Hello World</h1>
+		<h1 style="color:#0000ff">Hello World</h1>
 	<%
 		} else if("green".equals(color)) {
 	%>	
-		<h1 style="color:#0000ff">Hello World</h1>
+		<h1 style="color:#00ff00">Hello World</h1>
 	<%
 		} else {
 	%>	

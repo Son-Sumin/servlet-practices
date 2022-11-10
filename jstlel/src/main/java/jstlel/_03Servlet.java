@@ -33,6 +33,7 @@ public class _03Servlet extends HttpServlet {
 		vo3.setEmail("dooly3@gmail.com");
 		list.add(vo3);
 		
+		request.setAttribute("list", list);
 		request
 			.getRequestDispatcher("/WEB-INF/views/03.jsp")
 			.forward(request, response);
