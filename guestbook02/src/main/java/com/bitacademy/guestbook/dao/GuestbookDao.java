@@ -99,7 +99,7 @@ public class GuestbookDao {
 		return result;
 	}
 	
-	public Boolean deleteByNoandPassword(Long no, String password) {
+	public Boolean deleteByNoAndPassword(Long no, String password) {
 		boolean result = false;
 		
 		Connection conn = null;  
