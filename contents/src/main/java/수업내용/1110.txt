@@ -1,0 +1,78 @@
+5. Servlet JSP
+02. 웹프로그래밍(EL, JSTL)
+
+<%
+if    for                 -> JSTL (JSP Standard Tag Library) <if>, <forEach>
+%>
+
+<%= %>              -> EL(Expression Language, 값을 표현하는 식에 대한 언어)
+	            -> ${i } 대체(자바코드를 없애기 위해)
+	            -> i 는 더이상 문자가 아니라 이름이다
+UserVo vo = request.getAtrribute("vo")
+session.getAttribute("vo")
+<%=vo.getNumber() %>   -> ${vo.number } ; vo는 이름
+
+표현식 ex)
+int i = 10
+system.out.println(10);
+system.out.println(i);
+system.out.println(vo.getNumber());
+
+*****
+OS : tomcat = process : Servlet context
+Context 안에 프로그램인 돌아가는 정보가 들어 있다.
+Context; servlet + filter + listener
+
+Servlet context 안에 map이 있다.
+이름을 부여하면 map이 set/getAttirbute() 활용하여 객체를 만들어준다. 
+request.getServletContext().setAttribute("", .o);
+
+한 쿠키가 계속 오는 것, 그것들을 session으로 부르고 같은 요청끼리 모아둔다.
+구분하기 위해 SESSIONID 부여함.
+
+SessionFilter가 요청 당한 JSESSIONID가 없으면 만들어 달라고 답변함.
+Session Manager가 JSESSIONID와 HttpSession mapping 시켜준다.
+HttpSession 안에 객체 존재
+
+아래 것들에 객체가 저장되고 오래 유지되는 순서는 다음과 같다.
+1. Page Scope(JSP Scope)
+2. Request Scope
+3. Session Scope
+4. Application Scope
+
+***
+jstl maven 검색 후 dependency 추가
+views-new-jsp file-next-html5-edit- 
+***
+
+01. 웹프로그래밍
+Servlet 생명주기
+
+tomcat
+|--webapps
+       |--mysite02
+              |--assets
+              |--WEB-INF
+                      |--web.xml
+                      |--libs
+                      |--classes
+                               |--com
+                                       |--bitacademy
+                                                |--mysite
+                                                         |--controller
+                                                                    |--MainController.class
+
+url;  /main
+class;  c.b.m.c.MainController
+
+session 첫 번째 요청
+HttpServlet s = new MainController()
+s.init()  ***Spring KEYWORD
+s.service()
+s.doGet()
+
+session 두 번째 요청
+s.service()
+s.doGet()
+
+더 이상 /main이 불리지 않으면 서버가 destroy() 메소드를 통해서 서블릿을 제거한다.

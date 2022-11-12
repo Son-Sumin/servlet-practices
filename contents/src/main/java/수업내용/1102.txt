@@ -1,0 +1,56 @@
+body[TCP/IP + 제어정보 + data(my text 등)]
+소켓 함수; TCP/IP로 만들어 주는 함수들의 집합 ->  TCP/IP 통신이 되게끔 만들어줌
+Protocol; 약속을 의미함
+웹사이트를 만들기 위해 소켓을 갖고 있는 inputstream을 만들어야 한다.
+
+keyboard; system.in('in'; parameter)
+file; input/output stream; inputstream read, inputstream write etc..
+
+코덱; 디지털을 아날로그로 만들어줌
+엔코딩; 사람이 보는 문자를 바이트로 변환
+디코딩; 바이트를 사람이 보는 문자로 변환
+
+java FileCopy 맹구.jpg 맹구2.jpg
+cp 맹구.jpg 맹구2.jpg
+
+16진수 2개 - 1byte
+
+***
+기반(직접, 주) 스트림 - 소스에 바로 read
+보조(간접) 스트림 - 주 또는 또다른 보조의 소스를 read
+
+byte 단위는 stream이 붙음
+디스크에 쓸 때는 블락단위
+그외 마우스, 키보드는 바이트 단위
+
+상속은 소스로 확장; 코드레벨 확장
+i/o는 객체를 받아 run() 때 확장; 상속을 사용하지 않은 'decoration 패턴'
+주스트림의 주요 기능의 객체를 런타임 때 보조스트림은 주입받는다(DI, dependency injection)
+의존성을 setter 또는 생성자에 의해 주입해준다
+보조스트림에 주스트림의 주요 생성자를 넣어줘서 기능 확장을 한다
+
+<<I/O>>
+            byte 단위로 읽음(주로 파일, 이미지, 네트워크)         char 단위로 읽음(주로 텍스트 파일)
+				         <--  │ --> 
+					│
+** OutputStream[super, abstract, not interface]	│ ** Reader[super, abstract, not interface]
+ - FileOutputStream[sub, 주]			│  - FileReader[sub, 주]
+ - FilterOutputStream[sub, abstract, 주]		│  - BufferedReader[sub, 보조]
+ - BufferedOutputStream[FilterOutput의 sub, 보조]    │      └> method; readline; 개행 직전의 문자 저장
+     └> 리스트 또는 배열, buffer가 다 차면 주스트림에	│           개행 직전까지의 문자들을 프로그램에게 
+          내보냄(flush)				│  - InputStreamReader[sub, 보조]
+					│      └> byte로 들어와서 char로 읽어줌
+					│      └> char로 받은 내용을 BufferedReader의
+					│           readline 통해 String을 프로그램에게
+** InputStream[super, abstract, not interface]	│ 
+ - FileInputStream[sub]			│
+ - NullInputStream[sub]			│ ** Writer
+      └> method; system.in			│
+					│
+					
+
+Standard Out(console), Standard In(keyboard); os, java 등 system은 이 기능을 제공해야 한다
+자바는 키보드(System.in)와 화면(System.out)에 대한 객체를 생성하지 않아도 갖고 있다
+stdin
+std out
+std error

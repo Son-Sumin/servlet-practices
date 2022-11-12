@@ -1,0 +1,11 @@
+프로그래밍 기술(Python, Java, Java Script)
+리눅스(OS)
+데이터 아키텍처(DA(RDBMS), Date Architect)
+네트워크
+--------------------------------------------------
+리눅스(OS)
+웹프로그래밍(네트워크) - Front-End, Back-End, 프로그래밍
+스프링 FW(Frame Work)
+--------------------------------------------------
+빅데이터 처리(인프라)(분석 전 데이터 정제 기술) / 분석 기술
+데이터 분석(통계/확률, ML(Machine Learning), DL(Deep Learning))

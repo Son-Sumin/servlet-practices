@@ -1,0 +1,200 @@
+#6.01. 웹프로그래밍
+
+* http는 A문서의 서버가 B문서의 서버로 요청하면 B문서의 서버 응답 시 A문서의 서버 종료(무상태연결)
+전 상태 저장하지 않음.(그럼 로그인 후 어떻게 유지될까? 서버가 아닌 클라이언트에 저장 -> 보안 주의)
+채팅, 게임은 tcp/ip 연결(전후가 이어져 있음)
+
+* 요청 방법; GET /servlet/query?a=10&b=90 HTTP/1.1
+   cf. 현재 HTTP/2까지 나옴
+GET 외에 POST 방법이 있는데 변수=값이 헤더에 붙어 간다(변수, 값이 unvisible)
+POST를 사용하는 방법은 단 한 가지, 폼 작성이다.
+html에는 주로는 POST를 사용한다. GET 사용하려면 주소창에 프로그램 이름을 직접 입력해야하기 때문
+검색창은 주로 GET방식으로 사용한다
+
+* GET예시; 
+https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com
+ - 프로그램이름(또는 문서이름)?파라미터=값&파라미터=값
+ - 프로그램이름까지 URL
+ -  f11 누르면 요청 들어간 내용 확인 가능
+
+* 응답헤더 내용
+200; 완료
+301; 서버 옮겨짐
+404; validation 검증결과 작성내용 이상
+500; exception에러
+ - Content-Type : text/html  ; 응답바디 시작 전 바디의 내용
+    바디/바디가 구성되어 있는 언어
+
+web programming; 요청에 따른 응답바디 작성하는 것
+
+* URL(Uniform Resource Locator)
+프로그램은 URL이 실행시킨다
+*** 접근 프로토콜://IP 또는 도메인:포트번호/폴더이름/파일이름
+http://www.naver.com:8080/images/맹구2.jpg
+
+* context-path
+
+* 정적자원은 읽어서 보낸다
+
+* 127.0.0.1 as localhost; loof-back ip; 
+인터넷 연결 안 되어도 나에게 돌아오도록 web programming 작성 가능
+
+* Java & Tomcat
+helloweb/main/java/EmailDao.java
+helloweb/webapp/WEB-INF/web.xml, classes, libs    => helloweb.war
+ - linux에서는 webapp에 넣어줘야 하지만 eclipse는 알아서 세팅해준다
+
+tomcat/webapps/ helloweb/WEB-INF/web.xml, places, libs 
+tomcat/webapps/ helloweb/index.jsp((; servlet))
+tomcat/webapps/ helloweb/hello.html((; 프로그래밍 작성))
+ - tomcat에는 Default Servlet이라는 것이 있어서 정적 자원과 URL mapping을 시켜준 후 helloweb으로 보내준다. 그 후 객체 생성하여 메소드 호출하여 실행한다.
+ - 기본은 URL 작성해줘야 한다
+
+* URL과 class mapping -> 프로그래밍 시 신경쓸 것
+* WAS = Tomcat
+* publishing; 정적자원을 보내는 것(프로그래밍이라 하지 않음)
+
+* html; 문서를 구조적으로 만드는 역할, 예쁘게 만드는 역할이 아님
+
+* scriptlet -> JSTL/EL
+<% %>; 자바코드
+<%= %>; 표현식(연산식) String, int, float...
+
+* htttp CRUD method
+GET        read
+POST      create
+DELETE  delete
+PUT        update
+
+* 한개의 url에 여러 servlet 연결 가능
+
+-----------------------------------------------------------
+* MVC
+Controller - Servlet / 요청
+View - JSP / 응답, html만들기(랜더링)
+Model - DAO
+
+C <-> M
+↓  데이터 전달과 제어권 이동이 관건
+V
+
+Model1 = Model +1(JSP, V+C)
+Model2 = (M)odel +2(JSP(V), Servlet(C))  /  Servlet 통해서만 JSP 응답
+
+- emaillist01    ; only JSP
+- guestbook01 ; only JSP
+
+- emaillist02
+- guestbook02
+
+- emaillist03   ; spring
+- guestbook03 ; spring
+
+mysite01 ; super  *** 잘 정리해놓기
+|- mysite02
+|- mysite03(Spring MVC, XML Configuration)
+|- mysite04(Spring MVC, Java Class Configuration)
+|- mysite05(Spring Boot, Java Class Configuration)
+
+jblog
+ |- jblog03
+ |- jblog04
+ |- jblog05
+
+** User Story [Agile Process]
+- 하나의 서브렛으로 받을 수 있지만 서브릿별로 나눈다. URL:/~
+- JavaEE Architecture = MVC + 3layer(controller, dao(repository), DB)
+
+소프트웨어 시스템 보안
+인프라: 네트워크, OS
+애플리케이션 보안**현재 집중할 부분: 인증(사용자 id,pw) + 권한
+
+cookie 굽기 위해 설정 3가지; http 특성 상 response시 client 관련 정보는 갖고 있지 못하고 client에게 request 시 같이 달라고 함
+domain, path, expiration duration
+JSESSIONID=AA70D609F8927F19F5889639F36A46BE; 메모리에 생기는 cookie
+
+(1) 사용자는 회원가입을 한다.                         /user?a=join
+(2) 사용자는 로그인을 한다.                            /user?a=login - 인증
+(3) 사용자는 로그아웃을 한다.                         /user?a=logout- 인증
+(6) 로그인한 사용자는 자신의 정보를 수정한다.  /user?a=update
+
+(4) 사용자는 방명록에 글을 남긴다.             /guestbook?a=add    - 비회원 방명록 접근 가능
+(5) 사용자는 방명록 자신의 글을 삭제한다.   /guestbook?a=deleteform
+
+(7) 로그인한 사용자는 게시판에 글을 작성한다.      /board?a=
+(8) 로그인한 사용자는 자신의 글을 수정한다.
+(9) 로그인한 사용자는 자신의 글을 삭제한다.
+(10) 로그인한 사용자는 다른 사람의 글에 댓글을 남긴다.
+(11) 사용자는 게시판글의 목록을 볼 수 있다.
+(12) 사용자는 게시판글을 읽을 수 있다.
+
+com.bitacademy.mysite.controller
+com.bitacademy.mysite.dao
+com.bitacademy.mysite.vo
+package로 architecture를 만든다
+
+
+**post방식으로 insert delete update 시 redirect 응답 필요
+응답 2가지 방식
+1. html
+2. redirect
+
+index.jsp는 웰컴파일로 생략 가능
+/guestbook01/index.jpg
+/guestbook01
+
+http://localhost:8080/emaillist01/form.jsp
+http://localhost:8080/helloweb/tag.jsp
+http://localhost:8080/guestbook01
+
+------------------------------------------------------------------
+# 1108
+URL은 소문자 쓰기~~
+com.bitacademy.emaillist.controller
+	|-- EmaillistController
+com.bitacademy.emaillist.dao
+	|-- EmaillistDao
+com.bitacademy.emaillist.vo
+	|-- EmaillistVo
+
+com.bitacademy.guestbook.controller
+	|-- GuestbookController
+com.bitacademy.guestbook.dao
+	|-- GuestbookDao
+com.bitacademy.guestbook.vo
+	|-- GuestbookVo
+
+
+* MVC.jpg
+1. 제어 코드 이동
+2. 요청 연장: Request Extension
+지금까지 client -> jsp
+MVC에서 client -> servlet -> jsp
+3. 요청 분배: Request Dispatch
+controller가 받은 request에 대해서 jsp로 각각의 view로 분배
+4. forward
+요청을 다른 view에게 던지기
+
+req:
+
+* forward vs. redirect
+forwoar; servelet에서 jsp 가는 기술; about request extension
+redirect; about response 302
+
+*이론서(토비스프링; 공부할 때), 활용서(스프링 이넥션; 실무 때)
+
+* 백엔드
+	언어; java					          JavaScript            python
+	언어에 따른 web programming(Servlet/JSP, Spring MVC)      NodeJS(Express)  Django
+
+	RDBMS(SQL)
+	Database Programming(JDBC)
+	OS(Linux)
+
+* 프론트엔드
+	HTML
+	CSS
+	JavaScript
+	DOM Programming(Document Object Model)(DOM API, jQuery) / React, VueJS, AngularJS
+	AJAX Progamming
+				

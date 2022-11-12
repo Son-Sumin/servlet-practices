@@ -1,0 +1,57 @@
+#04. Java기본-자바기본API
+package collection, thread 참고
+
+***Collection Framwork ≒ 자바 자료구조 라이브러리(인터페이스 클래스)***
+자료들의 모음
+자료들끼리 연산한다 라고 표현
+자료들의 메소드 활용한다는 의미
+   cf. 개발자라면 자료구조 꼭 공부해야함, 자료구조 공부하는데 java 추천
+        JAVA process는 단일 JVM(processor)는 thread 기반으로 실행
+       Muti-thread 실행(프로세서가 하나이므로 Muti-thread 발전할 수 밖에 없음)
+ 
+자료구조 Collection은 저장할 때 내용이 아니라 객체를 저장함.
+자료구조 객체가 아니라 값을 add, remove함.
+
+
+트리는 응용자료구조이지 List, Set, Map를 칭하지 않음
+Collection 내에 iterator() interface 존재
+(Super)Collection과 (Sub)interface; List, Set, Map는 상속관계이다.
+
+** List; 순서O, 중복O;
+        └> 크기가 정해진 배열
+        └> 임의의 위치에 삽입, 삭제할 때 느리다는 단점(list 재할당 후 진행)
+        └> 구현클래스는 선택의 문제! 
+	Array는 DB접근 시 좋음.
+	Linked는 임의의 위치에 삽입, 삭제할 때 좋음.
+	Vector는 안전하게 thread하고 싶을 때 좋음.
+ <구현클래스>
+  - ArrayList; 배열 → List1 = new ArrayList(), thread-safe X 
+        └> 데이터가 순서대로 들어가고, 갖고올 때도 순서대로 갖고올 때 사용하기
+	임의로 중간에 끼어드는거 없을 때 사용하기
+        └> like stack
+  - LinkedList; 참조(java는 reference, C와 C++은 pointer) → List2 = new LinkedList()
+        └> class Node{Node next; string data;}
+	노드의 맨 만지막 부분을 다음 노드와 연결되도록 설정
+	임의의 위치에 데이터 n 삽입 시 n.next = p.next.next; p.next = n; 
+        └> 
+  - Vector; 배열; element가 붙은 얘들이 Vector, 잘 안쓰는 클래스, thread-safe O
+	여러 메소드가 접근할 가능성이 있으면 사용하는 것이 좋음
+        └>OS가 실행시킨 얘들을 process라고 함. 
+            OS에서는 프로그램이 병렬, 프로그램에서는 thread가 병렬
+        └> Vector 내 모든 메소드가 sychronized되어 있음.
+
+
+
+** Set; 순서X, 중복X
+Set을 어디에 쓰는가; for counting
+  - Hash Set
+  - 
+**  Map; key(순서X, 중복X) - value(순서X, 중복O)
+
+** List 기반으로 만드는 메소드
+* Stack
+* Queue
+stack(FILO)을 옆으로 눕혔다고 생각하기
+FIFO(First in First out)
+메세지 채팅창, 대량의 데이터 사용시 사용함
+빨리 보내려는 의미가 아니라 맨 마지막 thread가 hang걸리는 것을 막기 위해 사용
