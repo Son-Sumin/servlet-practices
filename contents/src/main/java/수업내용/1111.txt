@@ -24,6 +24,7 @@ nextPage
 prevPage
 
  limit ((현page-1)*page당 보여주는 게시물 수, page당 보여주는 게시물 수);
+----------------------------------------------------------------------------------
 
 show tables;
 
@@ -86,9 +87,9 @@ order by group_no desc, order_no asc;
  
  -- pstmt.setInt(1, (page-1)*3)
  
- insert into board values(null, '베스킨', '사빠딸', '1', now(), '1', '1', '0', '6');
- insert into board values(null, '빠바', '소시지빵', '1', now(), 'maxGroupNo+1', '1', '0', '6');
- insert into board values(null, '방앗간', '인절미', '1', now(), 'max(group_no) as maxGroupNo+1', '1', '0', '7');
+ insert into board values(null, '베스킨', '사빠딸', '1', now(), '1', '1', '0', '1');
+insert into board values(null, '빠바', '소시지빵', '1', now(), '2', '1', '0', '1');
+insert into board values(null, '붕어빵', '맛있겠다', '1', now(), (select max(group_no) + 1), '1', '0', '1');
  
  delete from board where title = '빠바';
 select max(group_no) as maxGroupNo from board;
