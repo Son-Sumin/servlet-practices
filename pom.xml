@@ -47,7 +47,5 @@
 		<module>emaillist02</module>
 		<module>guestbook02</module>
 		<module>jstlel</module>
-		<module>chaper00</module>
-		<module>contents</module>
 	</modules>
 </project>
